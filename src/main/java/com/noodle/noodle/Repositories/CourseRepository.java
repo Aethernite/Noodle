@@ -1,0 +1,13 @@
+package com.noodle.noodle.Repositories;
+
+import com.noodle.noodle.Entities.Course;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface CourseRepository extends JpaRepository<Course, Integer> {
+    List<Course> findAllByStatus(String status);
+    Course findOneById(Integer id);
+}

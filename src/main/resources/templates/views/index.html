@@ -1,0 +1,20 @@
+<head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
+    <link th:href="@{/css/index-style.css}" rel="stylesheet" type="text/css"/>
+</head>
+<div id="container" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div id="box">
+        <h1>Login</h1>
+        <form action="" method="POST"  name="Form">
+            <div class="field">
+                <input id="username" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="field">
+                <input id="password" type="password" name="password" placeholder="Password">
+            </div>
+            <div id="submit">
+                <input class="button" name="login-button" type="submit" value="Login" />
+            </div>
+        </form>
+    </div>
+</div>

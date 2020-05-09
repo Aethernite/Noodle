@@ -1,0 +1,13 @@
+body{
+background: rgb(39,23,75);
+background: linear-gradient(0deg, rgba(39,23,75,1) 0%, rgba(213,122,224,1) 100%);
+}
+
+h1 {
+color: black;
+}
+
+h6{
+color: black;
+font-size: 20px;
+}
