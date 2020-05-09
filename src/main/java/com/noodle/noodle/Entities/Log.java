@@ -31,6 +31,9 @@ public class Log {
         return id;
     }
 
+    public Log() {
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

@@ -25,6 +25,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private Set<Log> logs;
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }

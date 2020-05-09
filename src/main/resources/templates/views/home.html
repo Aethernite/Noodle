@@ -1,4 +1,3 @@
-
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
 	<title th:if="${pageTitle}" th:text="${pageTitle}"></title>
 	<link th:href="@{/css/landing-style.css}" rel="stylesheet" type="text/css"/>
@@ -10,10 +9,10 @@
 		<ul class="menu__list">
 			<h2>Noodle</h2>
 			<img src="/images/spaghetti.png">
-			<li class="menu__group"><a href="index.html" class="menu__link">Начало</a></li>
-			<li class="menu__group"><a href="courses.html" class="menu__link">Курсове</a></li>
-			<li class="menu__group"><a href="students.html" class="menu__link">Студенти</a></li>
-			<li class="menu__group"><a href="contacts.html" class="menu__link">Контакти</a></li>
+			<li class="menu__group"><a href="#" th:href="@{/admin/home}" class="menu__link">Начало</a></li>
+			<li class="menu__group"><a href="#" th:href="@{/admin/courses}" class="menu__link">Курсове</a></li>
+			<li class="menu__group"><a href="#" th:href="@{/admin/students}" class="menu__link">Студенти</a></li>
+			<li class="menu__group"><a href="#" th:href="@{/admin/contacts}" class="menu__link">Контакти</a></li>
 		</ul>
 	</nav>
 
@@ -34,9 +33,15 @@
 	</div>
 </div>
 
+
+
 <div class="Header-Courses">
 	<h3>Курсове:</h3>
 </div>
+
+
+
+
 <div class="products" xmlns:th="http://www.w3.org/1999/xhtml">
 	<ul class="products-column">
 		<th:block th:each="course : ${courses}">

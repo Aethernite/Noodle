@@ -30,6 +30,9 @@ public class Student {
         this.group = group;
     }
 
+    public Student() {
+    }
+
     public Set<Course> getCourses() {
         return courses;
     }
