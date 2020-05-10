@@ -34,9 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // URLs matching for access rights
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                .antMatchers("/logged/").hasAnyAuthority("ADMIN")
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/").permitAll()
-                .antMatchers("/logged").hasAnyAuthority("ADMIN")
-                .antMatchers("/admin/courses").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 // form login

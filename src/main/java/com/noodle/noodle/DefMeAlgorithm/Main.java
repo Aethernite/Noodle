@@ -9,6 +9,6 @@ public class Main {
         AlgoDefMe adm = new AlgoDefMe();
         TransactionDatabase tb = new TransactionDatabase();
         tb.loadFile("C:\\Users\\appar\\Desktop\\Stuff\\NoodleProject\\test.txt");
-        adm.runAlgorithm("C:\\Users\\appar\\Desktop\\Stuff\\NoodleProject\\testOutput.txt",tb,0.1);
+        adm.runAlgorithm("C:\\Users\\appar\\Desktop\\Stuff\\NoodleProject\\testOutput.txt",tb,0.01);
     }
 }

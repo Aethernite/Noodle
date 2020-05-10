@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/landing-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/students-style.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -41,12 +41,13 @@
 
 
 
-<table>
+<table class="Student-Table">
     <thead>
     <tr>
         <th> Име на студента </th>
         <th> Факултетен номер </th>
         <th> Група </th>
+        <th> Обновяване</th>
     </tr>
     </thead>
     <tbody>
@@ -54,9 +55,10 @@
         <td colspan="2"> Няма запис на студенти </td>
     </tr>
     <tr th:each="student : ${students}">
-        <td><span th:text="${student.name}"> Име на студента </span></td>
-        <td><span th:text="${student.facnum}"> Факултетен номер </span></td>
-        <td><span th:text="${student.group}"> Група </span></td>
+        <td><span th:text="${student.name}"></span></td>
+        <td><span th:text="${student.facnum}"></span></td>
+        <td><span th:text="${student.group}"></span></td>
+        <td><p><form action="" th:action="@{/admin/students/edit/{id}(id=${student.id})}" method="POST"><button id="Edit-Button">Редактиране</button></form></p></td>
     </tr>
     </tbody>
 </table>
