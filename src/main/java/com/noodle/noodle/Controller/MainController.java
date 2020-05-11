@@ -80,8 +80,8 @@ public class MainController {
         return "redirect:/admin/courses";
     }
 
-    /*@PostMapping("/admin/students/edit/{id}")
-    public ModelAndView editStudent(ModelAndView modelAndView,@PathVariable(value = "id") Integer id){
+    @PostMapping("/admin/students/edit/{id}")
+    public ModelAndView editStudent(ModelAndView modelAndView, @PathVariable(value = "id") Integer id){
         modelAndView.setViewName("base-layout");
         modelAndView.addObject("view", "/views/editstudent");
         Student student = studentRepository.findOneById(id);
@@ -95,7 +95,14 @@ public class MainController {
         studentRepository.save(student);
         return "redirect:/admin/students";
     }
-*/
 
+    @GetMapping("/admin/contacts")
+    public ModelAndView contacts(ModelAndView modelAndView) {
+        modelAndView.setViewName("base-layout");
+        modelAndView.addObject("view", "/views/contacts");
+//        modelAndView.addObject()
+
+        return modelAndView;
+    }
 
 }
