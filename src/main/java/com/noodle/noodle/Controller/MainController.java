@@ -83,6 +83,7 @@ public class MainController {
         this.courseRepository.save(course);
         return "redirect:/admin/courses";
     }
+
 //ПОДОБРЕНИЕ НА СТРАНИЦА И СЕЙВ
     @GetMapping("/admin/students/edit/{id}")
     public ModelAndView editStudent(ModelAndView modelAndView,@PathVariable(value = "id") Integer id){
@@ -135,5 +136,7 @@ public class MainController {
         studentRepository.save(student);
         return "redirect:/admin/students";
     }
-*/
+
+  
+
 }

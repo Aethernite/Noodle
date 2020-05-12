@@ -4,7 +4,7 @@ import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
 
 import java.io.IOException;
 
-// small test
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
