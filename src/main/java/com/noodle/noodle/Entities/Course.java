@@ -20,9 +20,10 @@ public class Course {
     private String code;
     @Column(name = "status",nullable = false)
     private String status = "active";
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "courses_students", joinColumns = @JoinColumn(name = "students_id"), inverseJoinColumns = @JoinColumn(name = "courses_id"))
+
+    @ManyToMany(mappedBy = "courses")
     private Set<Student> students = new HashSet<>();
+
     public Course(String name, String description, String code) {
         this.name = name;
         this.description = description;
