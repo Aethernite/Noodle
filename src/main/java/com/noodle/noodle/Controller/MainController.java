@@ -83,7 +83,7 @@ public class MainController {
         this.courseRepository.save(course);
         return "redirect:/admin/courses";
     }
-
+//ПОДОБРЕНИЕ НА СТРАНИЦА И СЕЙВ
     @GetMapping("/admin/students/edit/{id}")
     public ModelAndView editStudent(ModelAndView modelAndView,@PathVariable(value = "id") Integer id){
         modelAndView.setViewName("base-layout");
@@ -109,6 +109,31 @@ public class MainController {
         return "redirect:/admin/students";
     }
 
+//КОЦЕ КОД
+    @GetMapping("/admin/contacts")
+    public ModelAndView contacts(ModelAndView modelAndView) {
+        modelAndView.setViewName("base-layout");
+        modelAndView.addObject("view", "/views/contacts");
+//        modelAndView.addObject()
 
+        return modelAndView;
+    }
 
+/* ПРЕДИ
+    @PostMapping("/admin/students/edit/{id}")
+    public ModelAndView editStudent(ModelAndView modelAndView, @PathVariable(value = "id") Integer id){
+        modelAndView.setViewName("base-layout");
+        modelAndView.addObject("view", "/views/editstudent");
+        Student student = studentRepository.findOneById(id);
+        modelAndView.addObject("student",student);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/admin/students/edit/confirm/{id}")
+    public String editStudent(Student student){
+        studentRepository.save(student);
+        return "redirect:/admin/students";
+    }
+*/
 }
