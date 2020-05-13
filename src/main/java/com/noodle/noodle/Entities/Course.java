@@ -22,13 +22,14 @@ public class Course {
     private String status = "active";
 
     @ManyToMany(mappedBy = "courses")
-    private Set<Student> students = new HashSet<>();
+    private Set<Student> students;
 
     public Course(String name, String description, String code) {
         this.name = name;
         this.description = description;
         this.code = code;
         status = "active";
+        students = new HashSet<>();
     }
 
     public Course() {

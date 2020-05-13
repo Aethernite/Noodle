@@ -50,6 +50,7 @@
                 <td><h5>Status: [[${course.status}]]</h5></td>
                 <td><p><form action="" th:action="@{/admin/course/setactive/{id}(id=${course.id})}" method="POST"><button>Enable</button></form></p></td>
                 <td><p><form action="" th:action="@{/admin/course/setinactive/{id}(id=${course.id})}" method="POST"><button>Disable</button></form></p></td>
+                <td><p><form action="" th:action="@{/admin/courses/edit/{id}(id=${course.id})}" method="GET"><button>Edit</button></form></p></td>
             </li>
         </th:block>
     </ul>

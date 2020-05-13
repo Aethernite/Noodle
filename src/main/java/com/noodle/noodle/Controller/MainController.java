@@ -2,6 +2,7 @@ package com.noodle.noodle.Controller;
 
 import com.noodle.noodle.Entities.Course;
 import com.noodle.noodle.Entities.Group;
+import com.noodle.noodle.Entities.Identification;
 import com.noodle.noodle.Entities.Student;
 import com.noodle.noodle.Models.UserDetails;
 import com.noodle.noodle.Repositories.CourseRepository;
@@ -10,10 +11,7 @@ import com.noodle.noodle.Repositories.StudentRepository;
 import com.noodle.noodle.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -119,6 +117,45 @@ public class MainController {
         return modelAndView;
     }
 
+
+
+    @GetMapping("/admin/courses/edit/{id}")
+    public ModelAndView editCourse(RedirectAttributes redirectAttributes,ModelAndView modelAndView, @PathVariable(value = "id") Integer id){
+        modelAndView.setViewName("base-layout");
+        modelAndView.addObject("view", "/views/editcourse");
+        Course course = courseRepository.findOneById(id);
+        Set<Student> students = course.getStudents();
+        modelAndView.addObject("course", course);
+        modelAndView.addObject("students", students);
+        modelAndView.addObject("content", course.getDescription());
+        redirectAttributes.addAttribute("course", course);
+        return modelAndView;
+    }
+
+
+    @PostMapping("/admin/courses/edit/{id}")
+    public String editCourse(Course course){
+        Course temp = courseRepository.findOneById(course.getId());
+        temp.setCode(course.getCode());
+        temp.setName(course.getName());
+        temp.setDescription(course.getDescription());
+        temp.setStudents(course.getStudents());
+        courseRepository.save(temp);
+        return "redirect:/admin/courses";
+    }
+
+
+    @PostMapping("/admin/courses/removefromcourse/{student_id}")
+    public String removeStudentFromCourse(@PathVariable(value = "student_id") Integer id, Identification identification){
+        System.out.println("CourseID: " + identification.getId());
+        Course course = courseRepository.findOneById(identification.getId());
+        Set<Student> students = course.getStudents();
+        Student student = studentRepository.findOneById(id);
+        students.remove(student);
+        course.setStudents(students);
+        courseRepository.save(course);
+        return "redirect:/admin/courses/edit/" + course.getId();
+    }
 /* ПРЕДИ
     @PostMapping("/admin/students/edit/{id}")
     public ModelAndView editStudent(ModelAndView modelAndView, @PathVariable(value = "id") Integer id){
