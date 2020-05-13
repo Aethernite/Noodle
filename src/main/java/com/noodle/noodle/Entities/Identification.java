@@ -1,5 +1,7 @@
 package com.noodle.noodle.Entities;
 
+import org.springframework.context.annotation.Bean;
+
 public class Identification {
     private int id;
 

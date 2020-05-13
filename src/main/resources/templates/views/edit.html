@@ -40,9 +40,9 @@
             <fieldset>
                 <legend><span class="number">1</span> Информация за студента</legend>
                 <label for="job">Име:</label>
-                <input type="text" name="field1" th:placeholder="${student.name}" th:field="*{name}" >
+                <input required type="text" name="field1" th:placeholder="${student.name}" th:field="*{name}" >
                 <label for="job">Факултетен номер:</label>
-                <input type="text" name="field2" th:placeholder="${student.facnum}" th:field="*{facnum}">
+                <input required type="text" name="field2" th:placeholder="${student.facnum}" th:field="*{facnum}">
                 <label for="job">Група:</label>
                 <select id="job" name="field4" th:field="*{group.num}">
                     <th:block th:each="group : ${groups}">
