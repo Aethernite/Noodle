@@ -120,7 +120,7 @@ public class MainController {
 
 
     @GetMapping("/admin/courses/edit/{id}")
-    public ModelAndView editCourse(RedirectAttributes redirectAttributes,ModelAndView modelAndView, @PathVariable(value = "id") Integer id){
+    public ModelAndView editCourse(Identification identification,RedirectAttributes redirectAttributes,ModelAndView modelAndView, @PathVariable(value = "id") Integer id){
         modelAndView.setViewName("base-layout");
         modelAndView.addObject("view", "/views/editcourse");
         Course course = courseRepository.findOneById(id);
@@ -128,6 +128,7 @@ public class MainController {
         modelAndView.addObject("course", course);
         modelAndView.addObject("students", students);
         modelAndView.addObject("content", course.getDescription());
+        modelAndView.addObject("identification", identification);
         redirectAttributes.addAttribute("course", course);
         return modelAndView;
     }
@@ -151,9 +152,13 @@ public class MainController {
         Course course = courseRepository.findOneById(identification.getId());
         Set<Student> students = course.getStudents();
         Student student = studentRepository.findOneById(id);
-        students.remove(student);
+        students.removeIf(entry -> {
+           return entry.getId().equals(id);
+        });
         course.setStudents(students);
         courseRepository.save(course);
+        student.getCourses().remove(course);
+        studentRepository.save(student);
         return "redirect:/admin/courses/edit/" + course.getId();
     }
 /* ПРЕДИ
