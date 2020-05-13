@@ -1,0 +1,77 @@
+<head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
+    <link th:href="@{/css/editcourse.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div class="container">
+    <nav class="menu">
+        <ul class="menu__list">
+            <h2>Noodle</h2>
+            <img src="/images/spaghetti.png">
+            <li class="menu__group"><a href="#" th:href="@{/admin/home}" class="menu__link">Начало</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/courses}" class="menu__link">Курсове</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/students}" class="menu__link">Студенти</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/contacts}" class="menu__link">Контакти</a></li>
+        </ul>
+    </nav>
+
+
+
+    <div id="cover">
+        <form method="get" action="">
+            <div class="tb">
+                <div class="td"><input type="text" placeholder="ТЪРСЕНЕ" required></div>
+                <div class="td" id="s-cover">
+                    <button type="submit">
+                        <div id="s-circle"></div>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="form-container">
+    <div class="form-style-5">
+        <form id="course-edit" th:action="@{/admin/courses/edit/id(id=${course.id})}" th:object="${course}" method="POST">
+            <fieldset>
+                <legend><span class="number">1</span> Информация за курса</legend>
+                <label for="job">Име:</label>
+                <input type="text" name="field1" th:placeholder="${course.name}" th:field="*{name}" >
+                <label for="job">Код на курса:</label>
+                <input type="text" name="field2" th:placeholder="${course.code}" th:field="*{code}">
+                <label for="job">Информация за курса:</label>
+                <textarea form="course-edit" th:field="*{description}"><c:out value="content"/></textarea>
+            </fieldset>
+        </form>
+            <fieldset>
+                <legend><span class="number">2</span>Студенти записани в този курс</legend>
+                <table class="Student-Table">
+                    <thead>
+                    <tr>
+                        <th> Име на студента </th>
+                        <th> Група </th>
+                        <th> Премахване </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${students.empty}">
+                        <td colspan="2"> Няма запис на студент</td>
+                    </tr>
+                    <tr th:each="student : ${students}">
+                        <td colspan="2"><span th:text="${student.name}"></span></td>
+                        <td colspan="2"><span th:text="${student.group.num}"></span></td>
+                        <td><p><form action="" th:object="${identification}" th:action="@{/admin/courses/removefromcourse/{id_student}(id_student=${student.id})}" method="POST"><button id="Edit-Button" th:value="${course.id}">Премахни</button></form></p></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <input type="submit" value="Запази"/>
+    </div>
+</div>
+
+</div>
+</body>

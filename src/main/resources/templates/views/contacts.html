@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/landing-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/students-style.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -15,8 +15,6 @@
             <li class="menu__group"><a href="#" th:href="@{/admin/contacts}" class="menu__link">Контакти</a></li>
         </ul>
     </nav>
-
-
 
     <div id="cover">
         <form method="get" action="">
@@ -33,27 +31,9 @@
     </div>
 </div>
 
-
-
-<div class="Header-Courses">
-    <h3>Курсове:</h3>
+<div class="Header-Students">
+    <h3>Контакти:</h3>
 </div>
 
-
-
-
-<div class="courses" xmlns:th="http://www.w3.org/1999/xhtml">
-    <ul class="products-column">
-        <th:block th:each="course : ${courses}">
-            <li>
-                <td><h3>[[${course.name}]]</h3></td>
-                <td><h5>Status: [[${course.status}]]</h5></td>
-                <td><p><form action="" th:action="@{/admin/course/setactive/{id}(id=${course.id})}" method="POST"><button>Enable</button></form></p></td>
-                <td><p><form action="" th:action="@{/admin/course/setinactive/{id}(id=${course.id})}" method="POST"><button>Disable</button></form></p></td>
-                <td><p><form action="" th:action="@{/admin/courses/edit/{id}(id=${course.id})}" method="GET"><button>Edit</button></form></p></td>
-            </li>
-        </th:block>
-    </ul>
-</div>
 </div>
 </body>

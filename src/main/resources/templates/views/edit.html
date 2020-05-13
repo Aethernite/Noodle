@@ -1,0 +1,98 @@
+<head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
+    <link th:href="@{/css/test.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div class="container">
+    <nav class="menu">
+        <ul class="menu__list">
+            <h2>Noodle</h2>
+            <img src="/images/spaghetti.png">
+            <li class="menu__group"><a href="#" th:href="@{/admin/home}" class="menu__link">Начало</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/courses}" class="menu__link">Курсове</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/students}" class="menu__link">Студенти</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/contacts}" class="menu__link">Контакти</a></li>
+        </ul>
+    </nav>
+
+
+
+    <div id="cover">
+        <form method="get" action="">
+            <div class="tb">
+                <div class="td"><input type="text" placeholder="ТЪРСЕНЕ" required></div>
+                <div class="td" id="s-cover">
+                    <button type="submit">
+                        <div id="s-circle"></div>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="form-container">
+    <div class="form-style-5">
+        <form th:action="@{/admin/students/edit/id(id=${student.id})}" th:object="${student}" method="POST">
+            <fieldset>
+                <legend><span class="number">1</span> Информация за студента</legend>
+                <label for="job">Име:</label>
+                <input type="text" name="field1" th:placeholder="${student.name}" th:field="*{name}" >
+                <label for="job">Факултетен номер:</label>
+                <input type="text" name="field2" th:placeholder="${student.facnum}" th:field="*{facnum}">
+                <label for="job">Група:</label>
+                <select id="job" name="field4" th:field="*{group.num}">
+                    <th:block th:each="group : ${groups}">
+                        <option th:value="${group.num}">[[${group.num}]]</option>
+                    </th:block>
+                </select>
+                <label for="job">Семестър:</label>
+                <select id="job" name="field4" th:field="*{semester}">
+                    <option th:each="semester : ${semesters}"
+                            th:value="${semester}"
+                            th:selected="${student.isSelectedSemester(semester)}">[[${semester}]]
+                    </option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend><span class="number">2</span>Курсове, в които учасва студента</legend>
+                <table class="Student-Table">
+                    <thead>
+                    <tr>
+                        <th> Име на курса </th>
+                        <th> Премахване </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${courses.empty}">
+                        <td colspan="2"> Няма запис на курсове </td>
+                    </tr>
+                    <tr th:each="course : ${courses}">
+                        <td><span th:text="${course.name}"></span></td>
+                        <td><p><form action="" th:action="@{/admin/students/edit/{id}(id=${student.id})}" method="POST"><button id="Remove-Button">Премахване</button></form></p></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <input type="submit" value="Запази" />
+        </form>
+    </div>
+</div>
+
+</div>
+</body>
+<!-- Коцето push form -->
+<!-- <form action="" th:action="@{/admin/students/edit/confirm/{id}(id=${student.id})}" method="POST">
+    <fieldset>
+        <label for="name">Име:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="facnum">Факултетен номер:</label>
+        <input type="text" id="facnum" name="facnum"><br><br>
+        <label for="group">Група</label>
+        <input type="text" id="group" name="group"><br><br>
+        <button id="Save-Button">Запази промени</button>
+    </fieldset>
+</form> -->
