@@ -21,6 +21,9 @@ public class Course {
     @Column(name = "status",nullable = false)
     private String status = "active";
 
+    @OneToMany(mappedBy = "course")
+    private Set<Log> logs = new HashSet<>();
+
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students;
 
