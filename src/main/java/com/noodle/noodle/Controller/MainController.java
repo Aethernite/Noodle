@@ -26,6 +26,7 @@ public class MainController {
     private final UserRepository userRepository;
     private final StudentRepository studentRepository;
     private final GroupRepository groupRepository;
+
     @Autowired
     public MainController(CourseRepository courseRepository, UserRepository userRepository, StudentRepository studentRepository, GroupRepository groupRepository) {
         this.courseRepository = courseRepository;
@@ -152,15 +153,18 @@ public class MainController {
         Course course = courseRepository.findOneById(identification.getId());
         Set<Student> students = course.getStudents();
         Student student = studentRepository.findOneById(id);
-        students.removeIf(entry -> {
-           return entry.getId().equals(id);
-        });
+        students.removeIf(entry -> entry.getId().equals(id));
         course.setStudents(students);
         courseRepository.save(course);
         student.getCourses().remove(course);
         studentRepository.save(student);
         return "redirect:/admin/courses/edit/" + course.getId();
     }
+
+
+
+
+
 /* ПРЕДИ
     @PostMapping("/admin/students/edit/{id}")
     public ModelAndView editStudent(ModelAndView modelAndView, @PathVariable(value = "id") Integer id){
