@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/student-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/students-style.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -33,40 +33,23 @@
     </div>
 </div>
 
-
-
 <div class="Header-Students">
-    <h3>Студенти:</h3>
+    <h3>Добяване на нов студент:</h3>
 </div>
 
-
-
-<table class="Student-Table">
-    <thead>
-    <tr>
-        <th> Име на студента </th>
-        <th> Факултетен номер </th>
-        <th> Група </th>
-        <th> Семестър </th>
-        <th> Обновяване</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${students.empty}">
-        <td colspan="2"> Няма запис на студенти </td>
-    </tr>
-    <tr th:each="student : ${students}">
-        <td><span th:text="${student.name}"></span></td>
-        <td><span th:text="${student.facnum}"></span></td>
-        <td><span th:text="${student.group.num}"></span></td>
-        <td><span th:text="${student.semester}"></span></td>
-        <td><p><form action="" th:action="@{/admin/students/edit/{id}(id=${student.id})}" method="GET"><button id="Edit-Button">Редактиране</button></form></p></td>
-    </tr>
-    </tbody>
-</table>
-
-
-<p><form action="" th:action="@{/admin/students/add}" method="GET"><button id="Add-Button">Добавяне на студент</button></form></p>
+<form action="" th:action="@{/admin/students/add/confirm}" method="POST">
+    <fieldset>
+        <label for="name">Име:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="facnum">Факултетен номер:</label>
+        <input type="text" id="facnum" name="facnum"><br><br>
+        <label for="group">Група</label>
+        <input type="text" id="group" name="group"><br><br>
+        <label for="semester">Семестър</label>
+        <input type="text" id="semester" name="semester"><br><br>
+        <button id="Add-Button">Запази студент</button>
+    </fieldset>
+</form>
 
 </div>
 </body>

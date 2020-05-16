@@ -109,6 +109,73 @@ public class MainController {
     }
 
 //КОЦЕ КОД
+    @GetMapping("/admin/courses/add")
+    public ModelAndView addCourse(ModelAndView modelAndView) {
+        modelAndView.setViewName("base-layout");
+        modelAndView.addObject("view", "/views/addcourse");
+        return modelAndView;
+    }
+
+    @PostMapping("/admin/courses/add/confirm")
+    public String addCourseSave(@RequestParam("courseName") String name,
+                                 @RequestParam("description") String description,
+                                 @RequestParam("code") String code,
+                                 @RequestParam("status") String status){
+
+        try {
+            Course course = new Course();
+            course.setName(name);
+            course.setDescription(description);
+            course.setCode(code);
+            course.setStatus(status);
+            courseRepository.save(course);
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        }
+
+        return "redirect:/admin/courses";
+    }
+
+    @GetMapping("/admin/students/add")
+    public ModelAndView addStudent(ModelAndView modelAndView) {
+        modelAndView.setViewName("base-layout");
+        modelAndView.addObject("view", "/views/addstudent");
+        return modelAndView;
+    }
+
+    @PostMapping("/admin/students/add/confirm")
+    public String addStudentSave(@RequestParam("name") String name,
+                                 @RequestParam("facnum") String facNum,
+                                 @RequestParam("group") int groupNum,
+                                 @RequestParam("semester") String semester){
+
+        try {
+            Group group = groupRepository.findOneByNum(groupNum);
+
+            Student.Semester[] semesters = Student.Semester.values();
+            int semesterIndex = -1;
+            for (int i = 0; i < semesters.length; i++) {
+                if (semesters[i].toString().equals(semester.toUpperCase())) {
+                    semesterIndex = i;
+                    break;
+                }
+            }
+
+            Student student = new Student();
+            student.setName(name);
+            student.setFacnum(facNum);
+            student.setGroup(group);
+            student.setSemester(semesters[semesterIndex]);
+            studentRepository.save(student);
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        }
+
+        return "redirect:/admin/students";
+    }
+
     @GetMapping("/admin/contacts")
     public ModelAndView contacts(ModelAndView modelAndView) {
         modelAndView.setViewName("base-layout");

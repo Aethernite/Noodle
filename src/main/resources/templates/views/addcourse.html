@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/student-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/students-style.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -33,40 +33,24 @@
     </div>
 </div>
 
-
-
 <div class="Header-Students">
-    <h3>Студенти:</h3>
+    <h3>Добяване на нов курс:</h3>
 </div>
 
+<form action="" th:action="@{/admin/courses/add/confirm}" method="POST">
+    <fieldset>
+        <label for="courseName">Име:</label>
+        <input type="text" id="courseName" name="courseName"><br><br>
+        <label for="description">Описание:</label>
+        <input type="text" id="description" name="description"><br><br>
+        <label for="status">Статус</label>
+        <input type="text" id="status" name="status"><br><br>
+        <label for="code">Семестър</label>
+        <input type="text" id="code" name="code"><br><br>
+        <button id="AddCourse-Button">Запази курс</button>
+    </fieldset>
+</form>
 
-
-<table class="Student-Table">
-    <thead>
-    <tr>
-        <th> Име на студента </th>
-        <th> Факултетен номер </th>
-        <th> Група </th>
-        <th> Семестър </th>
-        <th> Обновяване</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${students.empty}">
-        <td colspan="2"> Няма запис на студенти </td>
-    </tr>
-    <tr th:each="student : ${students}">
-        <td><span th:text="${student.name}"></span></td>
-        <td><span th:text="${student.facnum}"></span></td>
-        <td><span th:text="${student.group.num}"></span></td>
-        <td><span th:text="${student.semester}"></span></td>
-        <td><p><form action="" th:action="@{/admin/students/edit/{id}(id=${student.id})}" method="GET"><button id="Edit-Button">Редактиране</button></form></p></td>
-    </tr>
-    </tbody>
-</table>
-
-
-<p><form action="" th:action="@{/admin/students/add}" method="GET"><button id="Add-Button">Добавяне на студент</button></form></p>
 
 </div>
 </body>
