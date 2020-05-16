@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/students-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/addcourse.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -32,25 +32,21 @@
         </form>
     </div>
 </div>
-
-<div class="Header-Students">
-    <h3>Добяване на нов курс:</h3>
+<div class="form-container">
+    <div class="form-style-5">
+        <form id="course-add" class="course-add" th:action="@{/admin/courses/add/confirm}" th:object="${course}" method="POST">
+            <fieldset>
+                <legend><span class="number">1</span> Добавяне на курс</legend>
+                <label for="job">Име:</label>
+                <input required type="text" name="field1" th:field="*{name}" >
+                <label for="job">Код на курса:</label>
+                <input required type="text" name="field2" th:field="*{code}">
+                <label for="job">Информация за курса:</label>
+                <textarea required form="course-add" th:field="*{description}"></textarea>
+            </fieldset>
+            <input type="submit" value="Добави"/>
+        </form>
+    </div>
 </div>
-
-<form action="" th:action="@{/admin/courses/add/confirm}" method="POST">
-    <fieldset>
-        <label for="courseName">Име:</label>
-        <input type="text" id="courseName" name="courseName"><br><br>
-        <label for="description">Описание:</label>
-        <input type="text" id="description" name="description"><br><br>
-        <label for="status">Статус</label>
-        <input type="text" id="status" name="status"><br><br>
-        <label for="code">Семестър</label>
-        <input type="text" id="code" name="code"><br><br>
-        <button id="AddCourse-Button">Запази курс</button>
-    </fieldset>
-</form>
-
-
 </div>
 </body>

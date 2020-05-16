@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/landing-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/coursesfinal.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
             <div class="tb">
                 <div class="td"><input type="text" placeholder="ТЪРСЕНЕ" required></div>
                 <div class="td" id="s-cover">
-                    <button type="submit">
+                    <button class="searchButton" type="submit">
                         <div id="s-circle"></div>
                         <span></span>
                     </button>
@@ -33,30 +33,27 @@
     </div>
 </div>
 
-
-
 <div class="Header-Courses">
-    <h3>Курсове:</h3>
+    <p><form action="" th:action="@{/admin/courses/add}" method="GET"><button class="addCourseButton" id="AddCourse">Добавяне на нов курс</button></form></p>
 </div>
-
-
 
 
 <div class="courses" xmlns:th="http://www.w3.org/1999/xhtml">
     <ul class="products-column">
         <th:block th:each="course : ${courses}">
             <li>
-                <td><h3>[[${course.name}]]</h3></td>
-                <td><h5>Status: [[${course.status}]]</h5></td>
-                <td><p><form action="" th:action="@{/admin/course/setactive/{id}(id=${course.id})}" method="POST"><button>Enable</button></form></p></td>
-                <td><p><form action="" th:action="@{/admin/course/setinactive/{id}(id=${course.id})}" method="POST"><button>Disable</button></form></p></td>
-                <td><p><form action="" th:action="@{/admin/courses/edit/{id}(id=${course.id})}" method="GET"><button>Edit</button></form></p></td>
+                <h3>[[${course.name}]]</h3>
+                <h4>Статус: [[${course.status}]]</h4>
+                <h4>Описание: [[${course.description}]]</h4>
+                <form action="" th:action="@{/admin/course/setactive/{id}(id=${course.id})}" method="POST"><button class="buttonEnable">Покажи</button></form>
+                <form action="" th:action="@{/admin/course/setinactive/{id}(id=${course.id})}" method="POST"><button class="buttonDisable">Скрий</button></form>
+                <div class="editContainer"><form action="" th:action="@{/admin/courses/edit/{id}(id=${course.id})}" method="GET"><button class="buttonEdit">Редактирай</button></form></div>
             </li>
         </th:block>
     </ul>
 </div>
 
-<p><form action="" th:action="@{/admin/courses/add}" method="GET"><button id="AddCourse">Добавяне на нов курс</button></form></p>
+
 
 </div>
 </body>

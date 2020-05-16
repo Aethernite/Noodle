@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "auth_user")
-public class User implements UserDetails {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "auth_user_id")

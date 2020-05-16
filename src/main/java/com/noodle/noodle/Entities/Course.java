@@ -19,7 +19,7 @@ public class Course {
     @Column(name = "code", nullable = false)
     private String code;
     @Column(name = "status",nullable = false)
-    private String status = "active";
+    private String status = "активен";
 
     @OneToMany(mappedBy = "course")
     private Set<Log> logs = new HashSet<>();
@@ -31,7 +31,7 @@ public class Course {
         this.name = name;
         this.description = description;
         this.code = code;
-        status = "active";
+        status = "активен";
         students = new HashSet<>();
     }
 
@@ -61,11 +61,11 @@ public class Course {
         this.id = id;
     }
     public void setStatusInactive(){
-        status = "inactive";
+        status = "неактивен";
     }
 
     public void setStatusActive(){
-        status = "active";
+        status = "активен";
     }
 
     public String getName() {

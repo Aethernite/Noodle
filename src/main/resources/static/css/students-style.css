@@ -141,7 +141,7 @@ input[type="text"]::placeholder
     padding-left: 35px;
 }
 
-button
+.searchButton button
 {
     position: relative;
     display: block;
@@ -653,14 +653,14 @@ h4{
 
 /* TABLE OF STUDENTS */
 .Student-Table{
-  padding: 0px;
+  padding-left: 20px;
   display: inline-block;
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   border-collapse: collapse;
 }
 .Student-Table td,.Student-Table th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 15px;
 }
 .Student-Table p{
   padding: 0px;
@@ -669,21 +669,24 @@ h4{
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
 }
-.Student-Table tr:nth-child(even){background-color: #f2f2f2;}
+.Student-Table tr:nth-child(even){background-color: #F2DDFF;}
 
-.Student-Table tr:hover {background-color: #ddd;}
+.Student-Table tr
+{  background-color: #D5CEFF;}
 
 .Student-Table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 20x;
+  padding-bottom: 20x;
   text-align: left;
-  background-color: #4CAF50;
+ background: rgb(175,126,166);
+background: linear-gradient(0deg, rgba(175,126,166,1) 0%, rgba(129,131,198,1) 100%);
   color: white;
+  font-size: 20px;
 }
 
-.Header-Students{
-  padding-top:100px;
-  padding-bottom:auto;
+.Student-Table{
+  padding-top: 10px;
+  padding-bottom: auto;
 }
 .Student-Table form{
   height: auto;
@@ -692,16 +695,50 @@ h4{
 
 .Student-Table #Edit-Button{
     color: white;
-    background-color: #000;
+    background-color: #3a3b5d;
+    padding: 10px;
     font-size: 15px;
     display:block;
     width: 100%;
     height: 30%;
   border-radius: 4px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.Student-Table #Edit-Button:hover
+{
+   background: #8183c6;
+ transition: 0.5s;
 }
 
 .Student-Table td,.Student-Table span{
   font-weight: bold;
-  padding: 0px;
+  padding: 6px;
   margin: 0px;
+  font-size: 20px;
+}
+
+.AddStudent
+{
+  padding-left: 650px;
+  padding-top: 120px;
+}
+
+.addStudentButton
+{
+  background: #3a3b5d;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  display: inline-block;
+  font-size: 17px;
+  border-radius: 8px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.addStudentButton:hover,
+.addStudentButton:focus {
+ background: #8183c6;
+ transition: 0.5s;
 }

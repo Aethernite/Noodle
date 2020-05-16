@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/student-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/students-style.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -17,13 +17,12 @@
     </nav>
 
 
-
     <div id="cover">
         <form method="get" action="">
             <div class="tb">
                 <div class="td"><input type="text" placeholder="ТЪРСЕНЕ" required></div>
                 <div class="td" id="s-cover">
-                    <button type="submit">
+                    <button class="searchButton" type="submit">
                         <div id="s-circle"></div>
                         <span></span>
                     </button>
@@ -33,13 +32,7 @@
     </div>
 </div>
 
-
-
-<div class="Header-Students">
-    <h3>Студенти:</h3>
-</div>
-
-
+<form class="AddStudent" action="" th:action="@{/admin/students/add}" method="GET"><button class="addStudentButton">Добавяне на студент</button></form>
 
 <table class="Student-Table">
     <thead>
@@ -53,7 +46,7 @@
     </thead>
     <tbody>
     <tr th:if="${students.empty}">
-        <td colspan="2"> Няма запис на студенти </td>
+        <td colspan="5"> Няма запис на студенти </td>
     </tr>
     <tr th:each="student : ${students}">
         <td><span th:text="${student.name}"></span></td>
@@ -66,7 +59,7 @@
 </table>
 
 
-<p><form action="" th:action="@{/admin/students/add}" method="GET"><button id="Add-Button">Добавяне на студент</button></form></p>
+
 
 </div>
 </body>

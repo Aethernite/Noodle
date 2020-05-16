@@ -4,7 +4,6 @@ import com.noodle.noodle.Entities.Course;
 import com.noodle.noodle.Entities.Group;
 import com.noodle.noodle.Entities.Identification;
 import com.noodle.noodle.Entities.Student;
-import com.noodle.noodle.Models.UserDetails;
 import com.noodle.noodle.Repositories.CourseRepository;
 import com.noodle.noodle.Repositories.GroupRepository;
 import com.noodle.noodle.Repositories.StudentRepository;
@@ -15,11 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 
-@SessionAttributes({"UserDetails"})
+
 @Controller
 public class MainController {
     private final CourseRepository courseRepository;
@@ -36,16 +34,12 @@ public class MainController {
     }
 
     @GetMapping("/admin/home")
-    public ModelAndView home(ModelAndView modelAndView, RedirectAttributes redirectAttributes, Principal principal){
-        UserDetails userDetails = this.userRepository.findOneByUsername(principal.getName());
+    public ModelAndView home(ModelAndView modelAndView){
         modelAndView.setViewName("base-layout");
         modelAndView.addObject("view","views/home");
-        modelAndView.addObject("UserDetails", userDetails);
-        modelAndView.addObject("username", userDetails.getUsername());
-        List<Course> courses = this.courseRepository.findAllByStatus("active");
+        List<Course> courses = this.courseRepository.findAllByStatus("активен");
         modelAndView.addObject("courses", courses);
-        redirectAttributes.addFlashAttribute("UserDetails",userDetails);
-        redirectAttributes.addFlashAttribute("username",userDetails.getUsername());
+
         return modelAndView;
     }
 
@@ -86,7 +80,7 @@ public class MainController {
     @GetMapping("/admin/students/edit/{id}")
     public ModelAndView editStudent(ModelAndView modelAndView,@PathVariable(value = "id") Integer id){
         modelAndView.setViewName("base-layout");
-        modelAndView.addObject("view", "/views/edit");
+        modelAndView.addObject("view", "/views/editstudent");
         Student student = studentRepository.findOneById(id);
         Set<Course> courses = student.getCourses();
         List<Group> groups = groupRepository.findAll();
@@ -110,54 +104,35 @@ public class MainController {
 
 //КОЦЕ КОД
     @GetMapping("/admin/courses/add")
-    public ModelAndView addCourse(ModelAndView modelAndView) {
+    public ModelAndView addCourse(ModelAndView modelAndView, Course course) {
         modelAndView.setViewName("base-layout");
         modelAndView.addObject("view", "/views/addcourse");
         return modelAndView;
     }
 
     @PostMapping("/admin/courses/add/confirm")
-    public String addCourseSave(@RequestParam("courseName") String name,
-                                 @RequestParam("description") String description,
-                                 @RequestParam("code") String code,
-                                 @RequestParam("status") String status){
-
-        try {
-            Course course = new Course();
-            course.setName(name);
-            course.setDescription(description);
-            course.setCode(code);
-            course.setStatus(status);
-            courseRepository.save(course);
-        } catch(Exception e) {
-            e.printStackTrace();
-
-        }
-
+    public String addCourseSave(Course course){
+        course.setStatusActive();
+        courseRepository.save(course);
         return "redirect:/admin/courses";
     }
 
     @GetMapping("/admin/students/add")
-    public ModelAndView addStudent(ModelAndView modelAndView) {
+    public ModelAndView addStudent(ModelAndView modelAndView,Student student) {
         modelAndView.setViewName("base-layout");
         modelAndView.addObject("view", "/views/addstudent");
-
         Student.Semester[] semesters = Student.Semester.values();
         List<Group> groupList = groupRepository.findAll();
 
-        Student student = new Student();
-        modelAndView.addObject("stud", student);
         modelAndView.addObject("semesters", semesters);
-        modelAndView.addObject("semester", semesters[0]);
         modelAndView.addObject("groups", groupList);
-        modelAndView.addObject("group", groupList.get(0));
 
         return modelAndView;
     }
 
 
     @PostMapping("/admin/students/add/confirm")
-    public String addStudentSave(@ModelAttribute(value="stud") Student student){
+    public String addStudentSave(Student student){
         student.setGroup(groupRepository.findOneByNum(student.getGroup().getNum()));
         studentRepository.save(student);
         return "redirect:/admin/students";
