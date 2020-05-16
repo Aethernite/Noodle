@@ -37,16 +37,25 @@
     <h3>Добяване на нов студент:</h3>
 </div>
 
-<form action="" th:action="@{/admin/students/add/confirm}" method="POST">
+<form action="" th:action="@{/admin/students/add/confirm}" th:object="${stud}" method="POST">
     <fieldset>
         <label for="name">Име:</label>
         <input type="text" id="name" name="name"><br><br>
         <label for="facnum">Факултетен номер:</label>
         <input type="text" id="facnum" name="facnum"><br><br>
-        <label for="group">Група</label>
-        <input type="text" id="group" name="group"><br><br>
-        <label for="semester">Семестър</label>
-        <input type="text" id="semester" name="semester"><br><br>
+        <select id="group" name="group" th:field="*{group.num}">
+            <option value="0" select>Изберете група</option>
+            <th:block th:each="group : ${groups}">
+                <option th:value="${group.num}">[[${group.num}]]</option>
+            </th:block>
+        </select>
+        <label for="sem">Семестър</label>
+        <select id="sem" name="semesterField" th:field="*{semester}">
+            <option value="${semester}" select semester>Изберете семестър</option>
+            <option th:each="semester : ${semesters}"
+                    th:value="${semester}">[[${semester}]]
+            </option>
+        </select>
         <button id="Add-Button">Запази студент</button>
     </fieldset>
 </form>

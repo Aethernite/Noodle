@@ -141,38 +141,25 @@ public class MainController {
     public ModelAndView addStudent(ModelAndView modelAndView) {
         modelAndView.setViewName("base-layout");
         modelAndView.addObject("view", "/views/addstudent");
+
+        Student.Semester[] semesters = Student.Semester.values();
+        List<Group> groupList = groupRepository.findAll();
+
+        Student student = new Student();
+        modelAndView.addObject("stud", student);
+        modelAndView.addObject("semesters", semesters);
+        modelAndView.addObject("semester", semesters[0]);
+        modelAndView.addObject("groups", groupList);
+        modelAndView.addObject("group", groupList.get(0));
+
         return modelAndView;
     }
 
+
     @PostMapping("/admin/students/add/confirm")
-    public String addStudentSave(@RequestParam("name") String name,
-                                 @RequestParam("facnum") String facNum,
-                                 @RequestParam("group") int groupNum,
-                                 @RequestParam("semester") String semester){
-
-        try {
-            Group group = groupRepository.findOneByNum(groupNum);
-
-            Student.Semester[] semesters = Student.Semester.values();
-            int semesterIndex = -1;
-            for (int i = 0; i < semesters.length; i++) {
-                if (semesters[i].toString().equals(semester.toUpperCase())) {
-                    semesterIndex = i;
-                    break;
-                }
-            }
-
-            Student student = new Student();
-            student.setName(name);
-            student.setFacnum(facNum);
-            student.setGroup(group);
-            student.setSemester(semesters[semesterIndex]);
-            studentRepository.save(student);
-        } catch(Exception e) {
-            e.printStackTrace();
-
-        }
-
+    public String addStudentSave(@ModelAttribute(value="stud") Student student){
+        student.setGroup(groupRepository.findOneByNum(student.getGroup().getNum()));
+        studentRepository.save(student);
         return "redirect:/admin/students";
     }
 
