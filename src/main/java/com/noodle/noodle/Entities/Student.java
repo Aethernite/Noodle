@@ -70,7 +70,7 @@ public class Student {
     public Student(Integer id, String name, String facnum, Group group) {
         this.id = id;
         this.name = name;
-        setFacnum(facnum);
+        this.facnum = facnum;
         this.group = group;
     }
 
@@ -106,12 +106,7 @@ public class Student {
     }
 
     public void setFacnum(String facnum) {
-        if(facnum.length() == 9){
-            this.facnum=facnum;
-        }
-        else{
-            throw new IllegalArgumentException("Invalid faculty number size");
-        }
+       this.facnum = facnum;
     }
     public boolean isSelectedSemester(Semester semester){
         return this.semester.equals(semester);

@@ -30,7 +30,7 @@ public class Log {
     @ManyToOne
     @JoinColumn(name="course_id", nullable=true)
     private Course course;
-    @Column(name="plain_text",nullable=false)
+    @Column(name="plain_text",nullable=true)
     private String plaintext;
 
     public Integer getId() {

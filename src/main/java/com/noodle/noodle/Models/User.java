@@ -3,7 +3,6 @@ package com.noodle.noodle.Models;
 import com.noodle.noodle.Entities.Log;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -28,7 +27,7 @@ public class User {
     public User() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

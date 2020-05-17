@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,12 +38,13 @@ public class CSVLogCreator implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        if(logRepository.count()<10) {
-            CSVDataFilter dataFilter = new CSVDataFilter();
-            dataFilter.filter();
-            List<Log> logs = extractLogs(file);
-            loadLogs(logs);
-        }
+      if(logRepository.count()<10000) {
+          CSVDataFilter dataFilter = new CSVDataFilter();
+          dataFilter.filter();
+          List<Log> logs = extractLogs(file);
+          loadLogs(logs);
+      }
+
     }
 
     private void loadLogs(List<Log> logs){
@@ -54,6 +57,7 @@ public class CSVLogCreator implements ApplicationRunner {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         String cvsSplitBy = "::";
+        Set<Integer> userIds = new HashSet<>();
         while ((line = br.readLine()) != null) {
             // use separator
             String[] cols = line.split(cvsSplitBy);
@@ -99,7 +103,11 @@ public class CSVLogCreator implements ApplicationRunner {
                 }
                 log.setPlaintext(cols[0] + ", " + cols[1]  + ", " + cols[2] + ", " + cols[3] + cols[4] + ", " + cols[5]);
                 logs.add(log);
+                userIds.add(ids[0]);
             }
+        }
+        for(Integer id: userIds){
+            System.out.println(id);
         }
         return logs;
     }

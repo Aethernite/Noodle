@@ -1,0 +1,52 @@
+<head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
+    <link th:href="@{/css/logs-style.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div class="container">
+    <nav class="menu">
+        <ul class="menu__list">
+            <h2>Noodle</h2>
+            <img src="/images/spaghetti.png">
+            <li class="menu__group"><a href="#" th:href="@{/admin/home}" class="menu__link">Начало</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/logs}" class="menu__link">Логове</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/courses}" class="menu__link">Курсове</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/students}" class="menu__link">Студенти</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/contacts}" class="menu__link">Контакти</a></li>
+
+        </ul>
+    </nav>
+
+
+    <div class="algo-buttons">
+        <form action="" th:action="@{/admin/logs/algorithm/1}" method="GET"><button class="addCourseButton" id="AddCourse">Статистика за промени по курсовете</button></form>
+        <form action="" th:action="@{/admin/logs/algorithm/2}" method="GET"><button class="addCourseButton" id="AddCourse">Статистика за активността в сайта</button></form>
+        <form action="" th:action="@{/admin/logs/algorithm/3}" method="GET"><button class="addCourseButton" id="AddCourse">Статистика за активността на потребителите</button></form>
+    </div>
+
+<table class="Log-Table">
+    <thead>
+    <tr>
+        <th> Log ID </th>
+        <th> Information </th>
+        <th> User ID </th>
+        <th> Student ID</th>
+        <th> Course ID </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${logs.empty}">
+        <td colspan="5"> No logs found. </td>
+    </tr>
+    <tr th:each="log : ${logs}">
+        <td><span th:text="${log.id}"></span></td>
+        <td><span th:text="${log.plaintext}"></span></td>
+        <td><span th:text="${log.user != null} ? ${log.user.getId()} : 'NULL'"></span></td>
+        <td><span th:text="${log.student != null} ? ${log.student.getId()} : 'NULL'"></span></td>
+        <td><span th:text="${log.course != null} ? ${log.course.getId()} : 'NULL'"></span></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>

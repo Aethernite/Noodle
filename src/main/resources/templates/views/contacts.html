@@ -1,6 +1,6 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
-    <link th:href="@{/css/students-style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/contact-style.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -10,30 +10,22 @@
             <h2>Noodle</h2>
             <img src="/images/spaghetti.png">
             <li class="menu__group"><a href="#" th:href="@{/admin/home}" class="menu__link">Начало</a></li>
+            <li class="menu__group"><a href="#" th:href="@{/admin/logs}" class="menu__link">Логове</a></li>
             <li class="menu__group"><a href="#" th:href="@{/admin/courses}" class="menu__link">Курсове</a></li>
             <li class="menu__group"><a href="#" th:href="@{/admin/students}" class="menu__link">Студенти</a></li>
             <li class="menu__group"><a href="#" th:href="@{/admin/contacts}" class="menu__link">Контакти</a></li>
         </ul>
     </nav>
 
-    <div id="cover">
-        <form method="get" action="">
-            <div class="tb">
-                <div class="td"><input type="text" placeholder="ТЪРСЕНЕ" required></div>
-                <div class="td" id="s-cover">
-                    <button type="submit">
-                        <div id="s-circle"></div>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-        </form>
+</div>
+    <div class="contactsText">
+        <h3>Работили по проекта:</h3>
+        <h2>➼ Борислав Арангелов - фак. № 501217053</h2>
+        <h2>➼ Борислава Борисова - фак. № 501217007</h2>
+            <h2>➼ Ива Йонкова - фак. № 501217002</h2>
+            <h2>➼ Костадин Крушков - фак. № 501217036</h2>
+            <h2>➼ Преслава Димитрова - фак. № 501217001</h2>
     </div>
-</div>
 
-<div class="Header-Students">
-    <h3>Контакти:</h3>
-</div>
 
-</div>
 </body>

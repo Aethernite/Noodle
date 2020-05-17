@@ -76,19 +76,19 @@ body
 
 }
 
-.tb
+#cover .tb
 {
     display: table;
     width: 100%;
 }
 
-.td
+#cover .td
 {
     display: table-cell;
     vertical-align: middle;
 }
 
-input, button
+#cover input, button
 {
     color: #fff;
 
@@ -113,7 +113,12 @@ input, button
     transform: scale(0.3);
 }
 
-input[type="text"]
+#cover form
+{
+    height: 96px;
+}
+
+#cover input[type="text"]
 {
     width: 100%;
     height: 96px;
@@ -124,7 +129,7 @@ input[type="text"]
 
 }
 
-input[type="text"]::placeholder
+#cover input[type="text"]::placeholder
 {
     color: #fff;
 	font-family: 'Ubuntu', sans-serif;
@@ -136,7 +141,7 @@ input[type="text"]::placeholder
     padding-left: 35px;
 }
 
-.searchButton
+.searchButton button
 {
     position: relative;
     display: block;
@@ -160,7 +165,7 @@ input[type="text"]::placeholder
     transition: 0.5s ease all;
 }
 
-button span
+.searchButton button span
 {
     position: absolute;
     top: 68px;
@@ -174,7 +179,7 @@ button span
     transition: 0.5s ease all;
 }
 
-button span:before, button span:after
+.searchButton button span:before, button span:after
 {
     content: '';
     position: absolute;
@@ -554,112 +559,198 @@ body{
     padding: 10px;
 }
 
-.courses h3 {
+h1 {
     text-align:center;
-    font-size: 25px;
+    font-size: 50px;
     font-family: 'Ubuntu', sans-serif;
-    color: #3a3b5d;
+    transition: all .2s ease-in-out;
+    background: none;
+}
+h1:hover{
+    transform: scale(1.1);
+}
+h4{
+    font-family: 'Ubuntu', sans-serif;
+    color: #818181;
 }
 
-.courses h4 {
-    text-align:left;
-    font-size: 15px;
-    font-family: 'Ubuntu', sans-serif;
-    color: #3a3b5d;
-}
 
 .courses li{
-  background: rgb(246,194,194);
-  background: linear-gradient(0deg, rgba(246,194,194,1) 0%, rgba(196,186,254,1) 100%);
+    background: white;
     display: inline-block;
     padding-right:0;
     border: 1px dashed #ddd;
-    box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #8a8de0;
-   border-radius: 10px;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #ff1, 0 0 2px 10px #ff3;
     margin: 30px;
     transition: all .2s ease-in-out;
     width: 250px;
+
     float: left;
     position: relative;
 }
 .courses li:hover{
     transform: scale(1.1);
 }
-
-.buttonEnable
-{
-  background: #64a778;
-  border: none;
-  color: white;
-  padding: 15px 15px;
-  text-align: center;
-  display: inline-block;
-  font-size: 17px;
-  border-radius: 8px;
-  font-family: 'Ubuntu', sans-serif;
-  margin-left: 30px;
+.username{
+    text-align:center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.order-products{
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    overflow: auto;
+    white-space: pre;
 }
 
-.buttonEnable:hover,
-.buttonEnable:focus {
- background: #7ed598;
+.address{
+    font-family: 'Ubuntu', sans-serif;
+    overflow: auto;
+    font-weight: bold;
+}
+.phone{
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.price{
+    font-family: 'Ubuntu', sans-serif;
+
+
+}
+
+
+.button{
+    border: none;
+    outline: 0;
+    padding: 12px;
+    margin-top: 0;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    position: relative;
+    bottom: 0;
+}
+
+
+.order-title{
+    font-family:'Ubuntu',sans-serif;
+    text-align: center;
+}
+
+.Header-Courses{
+  padding-top:100px;
+}
+
+/* END Container Edit courses*/
+
+
+/* End Courses */
+
+/* TABLE OF STUDENTS */
+.Log-Table{
+  padding-left: 20px;
+  display: inline-block;
+  font-family: 'Ubuntu', sans-serif;
+  border-collapse: collapse;
+}
+.Log-Table td,.Log-Table th {
+  border: 1px solid #ddd;
+  padding: 15px;
+}
+.Log-Table p{
+  padding: 0px;
+  margin: 0px;
+  display: block;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+.Log-Table tr:nth-child(even){background-color: #F2DDFF;}
+
+.Log-Table tr
+{  background-color: #D5CEFF;}
+
+.Log-Table th {
+  padding-top: 20x;
+  padding-bottom: 20x;
+  text-align: left;
+ background: rgb(175,126,166);
+background: linear-gradient(0deg, rgba(175,126,166,1) 0%, rgba(129,131,198,1) 100%);
+  color: white;
+  font-size: 20px;
+}
+
+.Log-Table{
+  padding-top: 10px;
+  padding-bottom: auto;
+}
+.Log-Table form{
+  height: auto;
+  padding: 4px;
+}
+
+.Log-Table #Edit-Button{
+    color: white;
+    background-color: #3a3b5d;
+    padding: 10px;
+    font-size: 15px;
+    display:block;
+    width: 100%;
+    height: 30%;
+  border-radius: 4px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.Log-Table #Edit-Button:hover
+{
+   background: #8183c6;
  transition: 0.5s;
 }
 
-.buttonDisable
+.Log-Table td,.Log-Table span{
+  font-weight: bold;
+  padding: 6px;
+  margin: 0px;
+  font-size: 20px;
+}
+
+.AddStudent
 {
-  background: #ad4949;
-  border: none;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  display: inline-block;
-  font-size: 17px;
-  border-radius: 8px;
-  font-family: 'Ubuntu', sans-serif;
-  margin-left: 8px;
+  padding-left: 650px;
+  padding-top: 120px;
 }
 
-.buttonDisable:hover,
-.buttonDisable:focus {
- background: #d46060;
- transition: 0.5s;
-}
-
-.buttonEdit
+.addStudentButton
 {
   background: #3a3b5d;
   border: none;
   color: white;
-  padding: 15px 50px;
+  padding: 15px 30px;
   text-align: center;
   display: inline-block;
   font-size: 17px;
   border-radius: 8px;
   font-family: 'Ubuntu', sans-serif;
-  margin-left: 30px;
-  margin-bottom: 5px;
 }
 
-.buttonEdit:hover,
-.buttonEdit:focus {
+.addStudentButton:hover,
+.addStudentButton:focus {
  background: #8183c6;
  transition: 0.5s;
 }
 
-.courses form
-{
+
+.Log-Table{
+  padding-top: 50px;
+}
+
+.algo-buttons form{
+  padding: 150px 10px 10px 100px;
   display: inline-block;
-  padding: 0px;
-}
-
-.editContainer form
-{
-  padding-top: 10px;
-}
-
-.Header-Courses{
-  padding: 130px 50px 0px 710px;
 }
 
 .addCourseButton
@@ -680,10 +771,4 @@ body{
  background: #8183c6;
  transition: 0.5s;
 }
-
-/* END Container Edit courses*/
-
-
-/* End Courses */
-
-
+}

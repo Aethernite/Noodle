@@ -19,7 +19,7 @@ public class AuthenticationController {
         boolean hasUserRole = authentication.getAuthorities().stream()
                 .anyMatch(r -> r.getAuthority().equals("ADMIN"));
         if(hasUserRole) {
-            return "redirect:/admin/home";
+            return "redirect:/admin/logged";
         }
         return "redirect:/";
     }
